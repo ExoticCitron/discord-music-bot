@@ -1,3 +1,11 @@
+## Future Update v1.1
+- Embed / Buttons
+- Queue glitch bug fix where you cna only skip a song once even though there are multiple song(s) in the queue | the fixes will be oushed around next month so look out for a tona bug patches / embed/button styles
+
+![Future Update](https://imgur.com/Z6MX33q)
+
+---------
+
 # Spotify Discord
 Made this for my server, but you can use it too ig lmao
 Uses spotipy library to fetch spotify track/album info and uses ytdlp to extract audio and stream it directly through discord 
