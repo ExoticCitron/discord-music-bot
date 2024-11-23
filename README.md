@@ -2,7 +2,7 @@
 - Embed / Buttons
 - Queue glitch bug fix where you cna only skip a song once even though there are multiple song(s) in the queue | the fixes will be oushed around next month so look out for a tona bug patches / embed/button styles
 
-![Future Update](https://imgur.com/Z6MX33q)
+https://imgur.com/Z6MX33q
 
 ---------
 
