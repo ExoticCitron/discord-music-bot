@@ -17,3 +17,5 @@ pip install spotipy
 > Add your bot token and start it, this required slash commands
 
 I'll be regularly updating this, current version v1.0 has a tonna queue bugs because it's stored in a dict and it only for small servers, this will be fixed as we progress on latter versions. Next commit around next monthish with embeds/buttons and bug fixes and db updates ig
+
+Open a pull request to request bug fixes blah blah
