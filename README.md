@@ -3,9 +3,9 @@ Made this for my server, but you can use it too ig lmao
 Uses spotipy library to fetch spotify track/album info and uses ytdlp to extract audio and stream it directly through discord 
 
 # Get started
-> !) Download dependicies:
-> Unless you're a complete idiot, this should be easy..
-```py
+> 1) Download dependicies:
+> **Unless you're a complete idiot, this should be easy..**
+```python
 pip install discord
 pip install spotipy
 ```
