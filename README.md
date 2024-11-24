@@ -6,7 +6,8 @@
 - Youtube playback support
 - Dropdown to view different pages, queue and [DJ system?]
 
-![Screenshot 2024-11-24 122650](https://github.com/user-attachments/assets/8e2c16f6-244e-4c60-86a2-f3bafb1c8bee)
+
+![Screenshot 2024-11-24 182914](https://github.com/user-attachments/assets/a8841c72-58fe-4b15-9e14-4db7a0cc1a20)
 
 
 https://exo-devs.tech/
