@@ -1,8 +1,10 @@
 ## Future Update v1.1
 - Embed / Buttons
-- Queue glitch bug fix where you cna only skip a song once even though there are multiple song(s) in the queue | the fixes will be pushed around next month so look out for a tona bug patches / embed/button styles
+- Queue glitch bug fix where you can only skip a song once even though there are multiple song(s) in the queue | the fixes will be pushed around next month so look out for a tona bug patches / embed/button styles
 - Fetch YT thumbnail and other dope stuff ig
-
+- Support for immediate playback of huge playlists
+- Youtube playback support
+- Dropdown to view different pages, queue and [DJ system?]
 
 ![Screenshot 2024-11-24 122650](https://github.com/user-attachments/assets/8e2c16f6-244e-4c60-86a2-f3bafb1c8bee)
 
