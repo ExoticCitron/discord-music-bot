@@ -18,7 +18,7 @@ Uses spotipy library to fetch spotify track/album info and uses ytdlp to extract
 
 # Get started
 > 1) Download FFMPEG
-> This is a required prerequisite (all credits to [@DanielOrourke02](https://github.com/DanielOrourke02) for bringing this up and suggesting a resolve - woulda forgot). Using this because it supports far more formats and is better in quality. Check thie link to see how to get started with FFMPEG:  https://transloadit.com/devtips/how-to-install-ffmpeg-on-windows-a-complete-guide/
+> This is a required prerequisite (all credits to [@DanielOrourke02](https://github.com/DanielOrourke02) for bringing this up and suggesting a resolve - woulda forgot). Using this because it supports far more formats and is better in quality. Check the link to see how to get started with FFMPEG:  https://transloadit.com/devtips/how-to-install-ffmpeg-on-windows-a-complete-guide/
 
 > 2) Download dependencies:
 > **Unless you're a complete idiot, this should be easy..**
