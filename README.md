@@ -1,10 +1,13 @@
-## Future Update v1.1
+## Update v1.1 NOW LIVE (30/11/24)
+###### Next Update v1.2 (around christmas) - request features on pull request and/or fixes, ill update this readme with update features by the 10th of dec 
+
+Features (current v1.1):
 - Embed / Buttons
-- Queue glitch bug fix where you can only skip a song once even though there are multiple song(s) in the queue | the fixes will be pushed around next month so look out for a tona bug patches / embed/button styles
+- Queue glitch bug fix where you can only skip a song once even though there are multiple song(s) in the queue. You may now add BULK playlists on spotify and it will be streamed through in batches of 5 at a go.
 - Fetch YT thumbnail and other dope stuff ig
 - Support for immediate playback of huge playlists
-- Youtube playback support
-- Dropdown to view different pages, queue and [DJ system?]
+- Youtube playback support (pushed next update icba)
+- Dropdown to view different pages, queue [SOON] and [DJ system? SOON]
 
 
 ![Screenshot 2024-11-24 182914](https://github.com/user-attachments/assets/a8841c72-58fe-4b15-9e14-4db7a0cc1a20)
@@ -30,11 +33,11 @@ pip install yt-dlp
 ```
 
 > 3) Get spotify API scopes:
-> Scopes needed: `client_id`, `client_secret` - these can be obtained [here](https://developer.spotify.com/dashboard)
+> Scopes needed: `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET` [in cogs/music.py] - these can be obtained [here](https://developer.spotify.com/dashboard)
 
 > 4) Start your bot:
 > Add your bot token and start it, this required slash commands
 
-I'll be regularly updating this, current version v1.0 has a tonna queue bugs because it's stored in a dict and its only for small servers, this will be fixed as we progress on latter versions. Next commit around next monthish with embeds/buttons and bug fixes and db updates ig
+I'll be regularly updating this, current version v1.1, v1.2 will be pushed soon, request fixes/features on pull req and i'll update this with features by the 10th
 
 Open a pull request to request bug fixes blah blah
