@@ -1,6 +1,8 @@
+###### I would like to note, this is a start of my school A-Level coding project, I am required to code something to hand in, this will be it. I may or may not maintain this in the future. As of right now, there will be frequent updates til i'm 17 (next year) XD
+----------
 ## Update v1.1 NOW LIVE (30/11/24)
 ###### Next Update v1.2 (around christmas) - request features on pull request and/or fixes, ill update this readme with update features by the 10th of dec 
-
+ 
 Features (current v1.1):
 - Embed / Buttons
 - Queue glitch bug fix where you can only skip a song once even though there are multiple song(s) in the queue. You may now add BULK playlists on spotify and it will be streamed through in batches of 5 at a go.
