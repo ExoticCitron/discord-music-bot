@@ -1,3 +1,5 @@
+# Will be worked in in Summer 2025
+
 ###### I would like to note, this is a start of my school A-Level coding project, I am required to code something to hand in, this will be it. I may or may not maintain this in the future. As of right now, there will be frequent updates til i'm 17 (next year) XD
 ----------
 ## Update v1.1 NOW LIVE (30/11/24)
