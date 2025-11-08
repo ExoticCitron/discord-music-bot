@@ -1,4 +1,4 @@
-# Will be updated on Decemeber 2025
+# Will be updated from Decemeber 2025 onwards
 
 ###### I would like to note, this is a start of my school A-Level coding project, I am required to code something to hand in, this will be it. I may or may not maintain this in the future. As of right now, there will be frequent updates til i'm 17 (next year) XD
 ----------
