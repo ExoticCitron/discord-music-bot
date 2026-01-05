@@ -10,7 +10,7 @@ bot = commands.Bot(command_prefix=commands.when_mentioned, intents=intents)
 
 @bot.event
 async def on_ready():
-    await bot.change_presence(status=discord.Status.idle, activity=discord.Game(name="https://divisionbot.tech/"))
+    await bot.change_presence(status=discord.Status.idle, activity=discord.Game(name="https://divisionbot.space/"))
     await bot.tree.sync()
     print(f"Bot is ready. Logged in as {bot.user}")
 
