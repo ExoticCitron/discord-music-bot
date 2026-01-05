@@ -42,12 +42,13 @@ class Music(commands.Cog):
         self.bot = bot
         self.song_queue = {}
         self.music_control_view = None 
+        self.now_playing_messages = {}  # update  
 
     @app_commands.command(name="play", description="Play a Spotify song or playlist in a voice channel.")
     async def play_command(self, interaction: discord.Interaction, url: str):
         if not interaction.user.voice:
             notinVC = discord.Embed(description=f"{interaction.user.mention}, you must be in a **voice channel** to use this command!", color=0xFF0000)
-            notinVC.set_footer(text="https://exo-devs.tech/")
+            notinVC.set_footer(text="https://divisionbot.space/")
             await interaction.response.send_message(embed=notinVC)
             return
 
@@ -67,47 +68,53 @@ class Music(commands.Cog):
             self.song_queue[guild_id] = []
 
         try:
-            queries = await self.get_spotify_track_url(url)
-
-            if not self.song_queue[guild_id]: 
+            if any(x in url.lower() for x in ["spotify.com", "open.spotify.com"]):
+                queries = await self.get_spotify_track_url(url)
+            else:
+                queries = [url]
+            if not queries:
+                errorEm = discord.Embed(title=":x: ERROR :x:", description="```Could not process your request. Please check the URL/search term and try again.```\n\nMessage **@exoticcitron** on discord to get this fixed...", color=0xFF0000)
+                errorEm.set_footer(text="https://divisionbot.space/")
+                await interaction.followup.send(embed=errorEm)
+                return
+            if not self.song_queue[guild_id] and not (vc and vc.is_playing()): 
                 first_query = queries.pop(0)
                 yt_url, yt_title, yt_thumbnail, yt_duration = await self.search_youtube(first_query)
                 if yt_url:
                     self.song_queue[guild_id].append({"url": yt_url, "title": yt_title, "thumbnail": yt_thumbnail, "duration": yt_duration})
                     await self.play_next_song(guild_id)
                     nowPlaying = discord.Embed(description=f"Now playing: **{yt_title}**", color=0x32CD32)
-                    nowPlaying.set_footer(text="https://exo-devs.tech/")
+                    nowPlaying.set_footer(text="https://divisionbot.space/")
                     nowPlaying.set_thumbnail(url=yt_thumbnail or (interaction.guild.icon.url if interaction.guild.icon else None))
                     duration = yt_duration
                     progress_bar = f"[{'▬' * 20}] 0:00 / {duration // 60}:{duration % 60:02}"
                     nowPlaying.add_field(name="Duration", value=progress_bar)
+                    nowPlaying.add_field(name="Links", value="[Discord](https://discord.gg/7kGnkGze2U)", inline=False)
                     if self.music_control_view is None or not self.bot.voice_clients:
                         self.music_control_view = MusicControl(interaction.user.id)
-                    await interaction.followup.send(embed=nowPlaying, view=self.music_control_view)
+                    msg = await interaction.followup.send(embed=nowPlaying, view=self.music_control_view)
+                    self.now_playing_messages[guild_id] = msg
                 else:
                     print(f"Could not find YouTube URL for query: {first_query}")
 
             else: 
-                for query in queries:
-                    yt_url, yt_title, yt_thumbnail, yt_duration = await self.search_youtube(query)
-                    if yt_url:
-                        self.song_queue[guild_id].append({"url": yt_url, "title": yt_title, "thumbnail": yt_thumbnail, "duration": yt_duration})
-
-                added_tracks_message = discord.Embed(description=f"Added **{len(queries)}** tracks to the queue.", color=0x32CD32)
-                await interaction.followup.send(embed=added_tracks_message)
-
-            asyncio.create_task(self.fetch_remaining_tracks(guild_id, queries))
+                # initial message for adding to queue
+                progress_message = discord.Embed(description=f"Adding **{len(queries)}** tracks to the queue...", color=0x32CD32)
+                progress_message.set_footer(text="https://divisionbot.space/")
+                msg = await interaction.followup.send(embed=progress_message)
+                
+                asyncio.create_task(self.fetch_remaining_tracks(guild_id, queries, msg, len(queries)))
 
         except Exception as e:
             errorEm = discord.Embed(title=":x: ERROR :x:", description=f"```{e}```\n\nMessage **@exoticcitron** on discord to get this fixed...", color=0xFF0000)
-            errorEm.set_footer(text="https://exo-devs.tech/")
+            errorEm.set_footer(text="https://divisionbot.space/")
             await interaction.followup.send(embed=errorEm)
 
     @app_commands.command(name="skip", description="Skip the current song or stop playback if the queue is empty.")
     async def skip_command(self, interaction: discord.Interaction):
         if not interaction.user.voice:
             notinVC = discord.Embed(description=f"{interaction.user.mention}, you must be in a **voice channel** to use this command!", color=0xFF0000)
-            notinVC.set_footer(text="https://exo-devs.tech/")
+            notinVC.set_footer(text="https://divisionbot.space/")
             await interaction.response.send_message(embed=notinVC)
             return
 
@@ -121,7 +128,7 @@ class Music(commands.Cog):
             if self.song_queue[guild_id]:
                 current_song = self.song_queue[guild_id][0]
                 nowPlaying = discord.Embed(description=f"Now playing: **{current_song['title']}**", color=0x32CD32)
-                nowPlaying.set_footer(text="https://exo-devs.tech/")
+                nowPlaying.set_footer(text="https://divisionbot.space/")
                 
                 if current_song.get('thumbnail'):
                     nowPlaying.set_thumbnail(url=current_song['thumbnail'])
@@ -136,11 +143,11 @@ class Music(commands.Cog):
                 await self.play_next_song(guild_id)  
             else:
                 noSongIsPlaying = discord.Embed(description="No song is currently playing", color=0xFF0000)
-                noSongIsPlaying.set_footer(text="https://exo-devs.tech/")
+                noSongIsPlaying.set_footer(text="https://divisionbot.space/")
                 await interaction.followup.send(embed=noSongIsPlaying)
         else:
             noSongIsPlaying = discord.Embed(description="No song is currently playing", color=0xFF0000)
-            noSongIsPlaying.set_footer(text="https://exo-devs.tech/")
+            noSongIsPlaying.set_footer(text="https://divisionbot.space/")
             await interaction.followup.send(embed=noSongIsPlaying)
 
     @app_commands.command(name="skipto", description="Skip to a specific song in the queue by number.")
@@ -179,7 +186,7 @@ class Music(commands.Cog):
 
         await interaction.response.send_message(f"Skipped to **{song_to_skip_to['title']}**.", ephemeral=True)
 
-    async def play_next_song(self, guild_id, message=None):
+    async def play_next_song(self, guild_id):
         vc = discord.utils.get(self.bot.voice_clients, guild__id=guild_id)
 
         if not vc or not vc.is_connected():
@@ -202,13 +209,13 @@ class Music(commands.Cog):
                     def after_playing(error):
                         if error:
                             print(f"Error occurred: {error}")
-                        asyncio.run_coroutine_threadsafe(self.play_next_song(guild_id, message), self.bot.loop)
+                        asyncio.run_coroutine_threadsafe(self.play_next_song(guild_id), self.bot.loop)
 
                     vc.play(source, after=after_playing)
                     print(f"Now playing: {song_title}")
 
                     nowPlaying = discord.Embed(description=f"Now playing: **{song_title}**", color=0x32CD32)
-                    nowPlaying.set_footer(text="https://exo-devs.tech/")
+                    nowPlaying.set_footer(text="https://divisionbot.space/")
                     
                     if next_song.get('thumbnail'):
                         nowPlaying.set_thumbnail(url=next_song['thumbnail'])
@@ -218,14 +225,22 @@ class Music(commands.Cog):
                     duration = next_song['duration']
                     progress_bar = f"[{'▬' * 20}] 0:00 / {duration // 60}:{duration % 60:02}"
                     nowPlaying.add_field(name="Duration", value=progress_bar, inline=False)
+                    
+                    nowPlaying.add_field(name="Links", value="[Discord](https://discord.gg/7kGnkGze2U)", inline=False)
 
-                    if message:
-                        await message.edit(embed=nowPlaying)
+                    # Edit existing now playing message if it exists, otherwise send new one
+                    if guild_id in self.now_playing_messages:
+                        try:
+                            await self.now_playing_messages[guild_id].edit(embed=nowPlaying, view=self.music_control_view)
+                        except:
+                            # If editing fails (message deleted), send new one
+                            msg = await vc.guild.text_channels[0].send(embed=nowPlaying, view=self.music_control_view)
+                            self.now_playing_messages[guild_id] = msg
                 else:
                     print(f"Already playing audio in guild {guild_id}.")
             except Exception as e:
                 print(f"Failed to play song '{song_title}': {e}")
-                await self.play_next_song(guild_id, message)
+                await self.play_next_song(guild_id)
         else:
             print(f"Queue is empty in guild {guild_id}.")
             self.song_queue[guild_id] = []
@@ -262,18 +277,46 @@ class Music(commands.Cog):
             print(f"Error processing Spotify URL: {e}")
             return []
 
-    async def fetch_remaining_tracks(self, guild_id, queries):
+    async def fetch_remaining_tracks(self, guild_id, queries, message, total_tracks):
         batch_size = 5
+        added_count = 0
+        skipped_count = 0
+        
         for i in range(0, len(queries), batch_size):
             batch = queries[i:i + batch_size]
+            batch_added = 0
+            
             for query in batch:
                 yt_url, yt_title, yt_thumbnail, yt_duration = await self.search_youtube(query)
                 if yt_url:
                     self.song_queue[guild_id].append({"url": yt_url, "title": yt_title, "thumbnail": yt_thumbnail, "duration": yt_duration})
-                    print(f"Added batch {i // batch_size + 1} to queue: {yt_title}")
+                    added_count += 1
+                    batch_added += 1
+                    print(f"Added to queue: {yt_title}")
                 else:
-                    print(f"Could not find YouTube URL for query: {query}")
+                    skipped_count += 1
+                    print(f"Could not find YouTube URL for query: {query}")            
+            if added_count > 0 or skipped_count > 0:
+                if added_count < total_tracks or i + batch_size < len(queries):
+                    progress_desc = f"Added **{added_count}** tracks to the queue..."
+                    if skipped_count > 0:
+                        progress_desc += f"\n⚠️ **{skipped_count}** tracks couldn't be found"
+                    progress_message = discord.Embed(description=progress_desc, color=0x32CD32)
+                    progress_message.set_footer(text="https://divisionbot.space/")
+                    await message.edit(embed=progress_message)
+            
             await asyncio.sleep(1)
+        if added_count > 0:
+            finished_desc = f"✅ Finished adding **{added_count}** songs from playlist!"
+            if skipped_count > 0:
+                finished_desc += f"\n⚠️ **{skipped_count}** tracks couldn't be found on YouTube"
+            finished_message = discord.Embed(description=finished_desc, color=0x32CD32)
+            finished_message.set_footer(text="https://divisionbot.space/")
+            await message.edit(embed=finished_message)
+        else:
+            error_message = discord.Embed(description="❌ Could not find any valid tracks from the playlist.", color=0xFF0000)
+            error_message.set_footer(text="https://divisionbot.space/")
+            await message.edit(embed=error_message)
 
     async def on_voice_state_update(self, member, before, after):
         if member == self.bot.user and before.channel is not None and after.channel is None:

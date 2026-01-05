@@ -33,7 +33,7 @@ class Volume(commands.Cog):
     async def currentvolume(self, interaction: discord.Interaction):
         current_volume_percentage = int(self.current_volume * 100)
         currentVol = discord.Embed(description=f"Current volume is set to {current_volume_percentage}%.", color=0x7289da)
-        currentVol.set_footer(text="https://exo-devs.tech/")
+        currentVol.set_footer(text="https://divisionbot.space/")
         await interaction.response.send_message(embed=currentVol)
 
 async def setup(bot):

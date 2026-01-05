@@ -133,7 +133,7 @@ class MusicControl(View):
             print(f"Song skipped by {interaction.user.name}.")
         else:
             noSongIsPlaying = discord.Embed(description="No song is currently playing", color=0xFF0000)
-            noSongIsPlaying.set_footer(text="https://exo-devs.tech/")
+            noSongIsPlaying.set_footer(text="https://divisionbot.space/")
             await interaction.followup.send(embed=noSongIsPlaying)
             print("No song is currently playing to skip.")
     
@@ -209,7 +209,7 @@ class MusicControl(View):
                 await music_cog.play_next_song(interaction.guild.id, interaction.message)
             else:
                 noSongIsPlaying = discord.Embed(description="No song is currently playing", color=0xFF0000)
-                noSongIsPlaying.set_footer(text="https://exo-devs.tech/")
+                noSongIsPlaying.set_footer(text="https://divisionbot.space/")
                 await interaction.message.edit(embed=noSongIsPlaying)
         elif select.values[0] == "Disconnect":
             if interaction.user.id != self.user_id:

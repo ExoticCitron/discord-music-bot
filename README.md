@@ -1,23 +1,44 @@
-# Will be updated from Decemeber 2025 onwards
-
-###### I would like to note, this is a start of my school A-Level coding project, I am required to code something to hand in, this will be it. I may or may not maintain this in the future. As of right now, there will be frequent updates til i'm 17 (next year) XD
+# Next Update - February 2026
+- Focus on improving queue management and user experience
+- Add a `clear` command to clear the queue
+- Improve queue display with better formatting and pagination
+- Add queue search functionality
+- Add queue shuffle functionality
+- Add queue repeat functionality
+- Add previous song skip functionality
+- Add queue loop functionality
+- Add queue priority management
+- Add queue sorting functionality
+- Add user to user music DJ system (?)
+- Add favourite songs/albums saving
+- Add playlist creation and management (?)
 ----------
-## Update v1.1 NOW LIVE (30/11/24)
-###### Next Update v1.2 (around christmas) - request features on pull request and/or fixes, ill update this readme with update features by the 10th of dec 
- 
-Features (current v1.1):
+## Update Log
+### v1.2 (Current) - January 5th 2026
+- Added interactive help system with dropdown menu
+- Added queue tracker
+- Added `/queue` command to display current music queue
+- Added `/help` to help lmao
+- Fixed now playing embed updates between songs - accurate and automatic after a song finishes
+- Added progress tracking for playlist processing
+- Support for plain text YouTube searches
+- Fixed URL length issues in embeds
+- Updated branding to Division Interactive
+
+
+### v1.1 (30/11/24)
 - Embed / Buttons
 - Queue glitch bug fix where you can only skip a song once even though there are multiple song(s) in the queue. You may now add BULK playlists on spotify and it will be streamed through in batches of 5 at a go.
 - Fetch YT thumbnail and other dope stuff ig
 - Support for immediate playback of huge playlists
 - Youtube playback support (pushed next update icba)
-- Dropdown to view different pages, queue [SOON] and [DJ system? SOON]
+- Dropdown to view different pages, queue [SOON] and [DJ system? SOON] A
 
 
 ![Screenshot 2024-11-24 182914](https://github.com/user-attachments/assets/a8841c72-58fe-4b15-9e14-4db7a0cc1a20)
 
 
-https://exo-devs.tech/
+https://divisionbot.space/
 ---------
 
 # Spotify Discord
@@ -34,6 +55,7 @@ Uses spotipy library to fetch spotify track/album info and uses ytdlp to extract
 pip install discord
 pip install spotipy
 pip install yt-dlp
+pip install pynacl
 ```
 
 > 3) Get spotify API scopes:
