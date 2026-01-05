@@ -35,7 +35,7 @@
 - Dropdown to view different pages, queue [SOON] and [DJ system? SOON] A
 
 
-![Screenshot 2024-11-24 182914](https://github.com/user-attachments/assets/a8841c72-58fe-4b15-9e14-4db7a0cc1a20)
+<img width="931" height="877" alt="image" src="https://github.com/user-attachments/assets/0e1d59a7-fed4-41cc-9a41-99a85971acb7" />
 
 
 https://divisionbot.space/
