@@ -1,5 +1,6 @@
 # Next Update - June/July 2026
 - Improve queue display with better formatting and pagination
+- Soundcloud, deezer, tidal, apple music support
 - Add queue search functionality
 - Add queue shuffle functionality
 - Add queue repeat functionality
