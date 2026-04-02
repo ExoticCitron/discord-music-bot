@@ -10,6 +10,7 @@
 - Add favourite songs/albums saving
 - Add playlist creation and management (?)
 ----------
+## MAKE SURE YOU UPDATE DISCORD.PY TO USE THE NEW DAVE PROTOCOL OR IT WON'T WORK: `pip install -U discord.py[voice]`
 ## Update Log 
 ### v1.3 (Current) - April 2nd 2026
 - Added a `clear` command to clear the queue
