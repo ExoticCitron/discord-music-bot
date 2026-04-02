@@ -1,20 +1,31 @@
-# Next Update - February 2026
-- Focus on improving queue management and user experience
-- Add a `clear` command to clear the queue
+# Next Update - June/July 2026
 - Improve queue display with better formatting and pagination
 - Add queue search functionality
 - Add queue shuffle functionality
 - Add queue repeat functionality
 - Add previous song skip functionality
-- Add queue loop functionality
 - Add queue priority management
 - Add queue sorting functionality
 - Add user to user music DJ system (?)
 - Add favourite songs/albums saving
 - Add playlist creation and management (?)
 ----------
+## Update Log 
+### v1.3 (Current) - April 2nd 2026
+- Added a `clear` command to clear the queue
+- Improved queue management and user experience
+- Added queue loop functionality
+- Added support for **youtube playlists** `[limited to 50 tracks, but you can change this in the code]`
+- Started queue priority management
+<img width="668" height="351" alt="loop" src="https://github.com/user-attachments/assets/f73b9d54-2785-4418-a4e3-f6c8eed5cb30" />
+<img width="1339" height="41" alt="clearqueue" src="https://github.com/user-attachments/assets/163e009c-993c-4ebc-a062-6596a03c12fd" />
+<img width="648" height="801" alt="youtubesupport" src="https://github.com/user-attachments/assets/f26efc05-4564-4360-8109-8fd0c4d53ab9" />
+
+### [NOTE]: This is just a small update to combat the new issue where spotify requires users to have a premium subscription to use their APIs', hence the support for youtube playlists now, so you can use that instead for now until the next update.
+
+----------
 ## Update Log
-### v1.2 (Current) - January 5th 2026
+### v1.2 - January 5th 2026
 - Added interactive help system with dropdown menu
 - Added queue tracker
 - Added `/queue` command to display current music queue
